@@ -35,6 +35,39 @@ namespace IdentityApp
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
+
+            // Configure Identity
+            // See hhttps://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-5.0&tabs=visual-studio
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 6;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(10);
+                options.Lockout.MaxFailedAccessAttempts = 2;
+                options.Lockout.AllowedForNewUsers = true;
+              
+
+                // User settings
+                // options.User.AllowedUserNameCharacters = "";                
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                // How long before a session expires
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.LoginPath = "/Acc/Login";
+                options.AccessDeniedPath = "/Acc/Denied";
+                Console.WriteLine(options.ExpireTimeSpan);
+                options.SlidingExpiration = true;
+
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +77,7 @@ namespace IdentityApp
             {
                 app.UseDeveloperExceptionPage();
                 app.UseMigrationsEndPoint();
+               
             }
             else
             {

@@ -1,0 +1,7 @@
+// Apply migrations to initialize databasae
+dotnet ef database update
+
+// Scaffold Register, Login, Logout and RegisterConfirmation
+// Step 1: Add codegenerator to the project
+// This will add a package reference in IdentityApp.csproj
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
