@@ -5,3 +5,7 @@ dotnet ef database update
 // Step 1: Add codegenerator to the project
 // This will add a package reference in IdentityApp.csproj
 dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+
+// Scaffold files
+// The generated files are put in the Areas folder
+dotnet aspnet-codegenerator --dbContext IdentityApp.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout;Account.RegisterConfirmation"
