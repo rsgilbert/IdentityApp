@@ -9,3 +9,16 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
 // Scaffold files
 // The generated files are put in the Areas folder
 dotnet aspnet-codegenerator --dbContext IdentityApp.Data.ApplicationDbContext --files "Account.Register;Account.Login;Account.Logout;Account.RegisterConfirmation"
+
+// Save user secrets
+dotnet user-secrets set SendGridName dandanda
+dotnet user-secrets set SendGridKey flskafjasdlfjkfakfljd
+
+// Add/install SendGrid package
+dotnet add package SendGrid
+
+
+
+
+
+

@@ -12,6 +12,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using IdentityApp.Services;
+
+
 
 namespace IdentityApp
 {
@@ -50,6 +54,9 @@ namespace IdentityApp
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(10);
                 options.Lockout.MaxFailedAccessAttempts = 2;
                 options.Lockout.AllowedForNewUsers = true;
+
+                // Allow a user to sign in without first confirming
+                options.SignIn.RequireConfirmedAccount = false;
               
 
                 // User settings
@@ -68,6 +75,12 @@ namespace IdentityApp
                 options.SlidingExpiration = true;
 
             });
+
+            // Configure startup to support email
+            // Add EmailSender as a transient service
+            // Register the AuthMessageSenderOptions configuration instance
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

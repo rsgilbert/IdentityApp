@@ -42,7 +42,10 @@ namespace IdentityApp.Areas.Identity.Pages.Account
 
             Email = email;
             // Once you add a real email sender, you should remove this code that lets you confirm the account
-            DisplayConfirmAccountLink = true;
+           
+            // Now that we set up SendGrid and used it to implement IEmailSender in EmailSender, 
+            // We can disable displaying confirmation account link so that the user must look for it from their email.
+            DisplayConfirmAccountLink = false;
             if (DisplayConfirmAccountLink)
             {
                 var userId = await _userManager.GetUserIdAsync(user);
