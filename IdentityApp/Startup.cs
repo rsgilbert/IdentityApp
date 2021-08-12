@@ -62,7 +62,7 @@ namespace IdentityApp
                 options.Cookie.HttpOnly = true;
                 // How long before a session expires
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
-                options.LoginPath = "/Acc/Login";
+                options.LoginPath = "/Identity/Account/Login";
                 options.AccessDeniedPath = "/Acc/Denied";
                 Console.WriteLine(options.ExpireTimeSpan);
                 options.SlidingExpiration = true;
